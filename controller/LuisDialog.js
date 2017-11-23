@@ -69,7 +69,7 @@ bot.dialog('DeleteFavourite', [
             }
         },
         function (session, results,next) {
-        
+        if(!isAttachment(session)){
 
             if(results.response){
                 session.conversationData["username"] = results.response;
@@ -88,7 +88,7 @@ bot.dialog('DeleteFavourite', [
                 session.send("No food identified! Please try again");
             }
         
-
+        }
     }]).triggerAction({
         matches: 'DeleteFavourite'
     });
