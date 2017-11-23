@@ -151,8 +151,6 @@ bot.dialog('WantFood', function (session, args) {
     });
     
 
-}
-
 function isAttachment(session) { 
     var msg = session.message.text;
     if ((session.message.attachments && session.message.attachments.length > 0) || msg.includes("http")) {
@@ -165,3 +163,6 @@ function isAttachment(session) {
         return false;
     }
 }
+
+}
+
