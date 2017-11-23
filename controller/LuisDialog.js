@@ -2,6 +2,7 @@ var builder = require('botbuilder');
 var food = require("./FavouriteFoods");
 var restaurant = require('./RestaurantCard');
 var nutrition = require('./nutritionCard');
+var customVision = require('./CognitiveDialog');
 // Some sections have been omitted
 var isAttachment = false;
 
