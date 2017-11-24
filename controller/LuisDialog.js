@@ -3,6 +3,7 @@ var food = require("./FavouriteFoods");
 var restaurant = require('./RestaurantCard');
 var nutrition = require('./nutritionCard');
 var customVision = require('./CognitiveDialog');
+var qna = require('./QnAMaker');
 // Some sections have been omitted
 var isAttachment = false;
 
@@ -151,6 +152,18 @@ bot.dialog('WantFood', function (session, args) {
         matches: 'LookForFavourite'
     });
     
+bot.dialog('QnA', [
+    function (session, args, next) {
+        session.dialogData.args = args || {};
+        builder.Prompts.text(session, "What is your question?");
+    },
+    function (session, results, next) {
+        qna.talkToQnA(session, results.response);
+    }
+]).triggerAction({
+    matches: 'QnA'
+});
+
 
 function isAttachment(session) { 
     var msg = session.message.text;
