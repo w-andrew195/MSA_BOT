@@ -121,6 +121,31 @@ bot.dialog('WantFood', function (session, args) {
         matches: 'WelcomeIntent'
     });
 
+bot.dialog('QnA', [
+    function (session, args, next) {
+
+        session.dialogData.args = args || {};
+        builder.Prompts.text(session, "What is your question?");
+    },
+    function (session, results, next) {
+        qna.talkToQnA(session, results.response);
+    }
+]).triggerAction({
+    matches: 'QnA'
+});
+
+
+/*
+    bot.dialog('QnA', function (session, args) {
+        
+        session.send("QnA Intent Hit");
+    
+    }).triggerAction({
+        matches: 'QnA'
+    });
+
+*/
+
  bot.dialog('LookForFavourite', [
         function (session, args, next) {
             session.dialogData.args = args || {};        
@@ -152,17 +177,8 @@ bot.dialog('WantFood', function (session, args) {
         matches: 'LookForFavourite'
     });
     
-bot.dialog('QnA', [
-    function (session, args, next) {
-        session.dialogData.args = args || {};
-        builder.Prompts.text(session, "What is your question?");
-    },
-    function (session, results, next) {
-        qna.talkToQnA(session, results.response);
-    }
-]).triggerAction({
-    matches: 'QnA'
-});
+
+
 
 
 function isAttachment(session) { 
